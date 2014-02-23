@@ -1,0 +1,10 @@
+#components .message,
+#components .table-empty thead,
+#components .table-empty tbody
+{
+  display: none;
+}
+#components .message-empty
+{
+  display: block;
+}

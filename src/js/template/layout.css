@@ -1,0 +1,10 @@
+#loading,
+.app_state-loading .view
+{
+  display: none;
+}
+
+.app_state-loading #loading
+{
+  display: block;
+}
