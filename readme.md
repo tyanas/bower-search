@@ -1,3 +1,11 @@
+[Bower search](http://bower.io/search) implementation on [basis.js](https://github.com/basisjs/basisjs).
+
+Page: [lahmatiy.github.io/bower-search](http://lahmatiy.github.io/bower-search)
+
+
+---
+Original readme
+
 # [Bower search](http://bower.io/search)
 
 > Search for [Bower](http://bower.io) packages
