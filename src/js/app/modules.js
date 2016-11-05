@@ -4,7 +4,7 @@ require('basis.data.dataset');
 // basis.data.dataset.Subset.extend({ ruleEvents: false });
 // basis.data.dataset.Slice.extend({ ruleEvents: false });
 
-var dataUrl = 'https://bower-component-list.herokuapp.com/';
+var dataUrl = 'https://libraries.io/api/bower-search?q=';
 
 // for development speed use local copy of data
 /** @cut */ dataUrl = 'data/modules.json';
