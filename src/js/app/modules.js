@@ -1,15 +1,13 @@
-require('basis.data');
-require('basis.data.dataset');
-
-// basis.data.dataset.Subset.extend({ ruleEvents: false });
-// basis.data.dataset.Slice.extend({ ruleEvents: false });
+var wrap = require('basis.data').wrap;
+var Dataset = require('basis.data').Dataset;
+var Filter = require('basis.data.dataset').Filter;
 
 var dataUrl = 'https://libraries.io/api/bower-search?q=';
 
 // for development speed use local copy of data
 /** @cut */ dataUrl = 'data/modules.json';
 
-var all = new basis.data.Dataset({
+var all = new Dataset({
   syncAction: require('basis.net.action').create({
     transportClass: require('basis.net.jsonp').Transport,
     url: dataUrl,
@@ -21,14 +19,14 @@ var all = new basis.data.Dataset({
         item.searchIndex = basis.object.values(item).join(' ').toLowerCase();
       });
 
-      this.set(basis.data.wrap(data, true));
+      this.set(wrap(data, true));
 
       /** @cut */ console.log('apply data', new Date - t);
     }
   })
 });
 
-var withDescription = new basis.data.dataset.Subset({
+var withDescription = new Filter({
   source: all,
   rule: function(item){
     return item.data.description;

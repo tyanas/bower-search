@@ -1,5 +1,7 @@
-require('basis.ui');
-require('basis.data.dataset');
+var Node = require('basis.ui').Node;
+var Value = require('basis.data').Value;
+var Filter = require('basis.data.dataset').Filter;
+var Slice = require('basis.data.dataset').Slice;
 
 var moment = require('moment');
 var allModules = require('app.modules').all;
@@ -22,23 +24,23 @@ for (var key in SORTING)
       rule: basis.getter('data.' + key + '||""')
     };
 
-var filteredModules = new basis.data.dataset.Subset({
+var filteredModules = new Filter({
   active: true,
   source: allModules
 });
-var source = new basis.data.dataset.Slice({
+var source = new Slice({
   source: filteredModules,
   limit: 10,
   orderDesc: SORTING.stars.desc,
   rule: SORTING.stars.rule
 });
 
-module.exports = new basis.ui.Node({
+module.exports = new Node({
   dataSource: source,
 
   template: resource('./template/list.tmpl'),
   binding: {
-    count: basis.data.Value.from(allModules, 'itemsChanged', 'itemCount')
+    count: Value.from(allModules, 'itemsChanged', 'itemCount')
   },
   action: {
     search: function(event){
@@ -68,18 +70,18 @@ module.exports = new basis.ui.Node({
   },
 
   init: function(){
-    basis.ui.Node.prototype.init.call(this);
+    Node.prototype.init.call(this);
     this.search(global.location.hash.replace(SEARCH_PREFIX, '').trim());
   },
 
   handler: {
     sortingChanged: function(){
-      console.log(this.sorting, this.sortingDesc);
+      /** @cut */ console.log(this.sorting, this.sortingDesc);
       this.dataSource.setRule(this.sorting, this.sortingDesc);
-      console.log(this.dataSource.rule, this.dataSource.orderDesc);
+      /** @cut */ console.log(this.dataSource.rule, this.dataSource.orderDesc);
     }
   },
-  
+
   sorting: source.rule,
   sortingDesc: source.orderDesc,
   setSortingType: function(type){

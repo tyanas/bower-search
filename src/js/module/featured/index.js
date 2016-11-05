@@ -1,7 +1,7 @@
-require('basis.data');
-require('app.list');
+var wrap = require('basis.data').wrap;
+var List = require('app.list').List;
 
-module.exports = new app.list.List({
+module.exports = new List({
   header: 'Featured components',
-  childNodes: basis.data.wrap(require('./data.json'))
+  childNodes: wrap(require('./data.json'))
 });

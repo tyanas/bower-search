@@ -1,8 +1,7 @@
-require('basis.data');
-require('basis.data.dataset');
-require('app.list');
+var Slice = require('basis.data.dataset').Slice;
+var List = require('app.list').List;
 
-var randomModules = new basis.data.dataset.Slice({
+var randomModules = new Slice({
   source: require('app.modules').withDescription,
   limit: 5,
   rule: function(){
@@ -10,7 +9,7 @@ var randomModules = new basis.data.dataset.Slice({
   }
 });
 
-module.exports = new app.list.List({
+module.exports = new List({
   header: 'Random components',
   dataSource: randomModules
 });

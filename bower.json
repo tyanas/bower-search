@@ -2,7 +2,7 @@
   "name": "bower-components",
   "version": "0.0.0",
   "dependencies": {
-    "basisjs": "1.2.0",
-    "momentjs": "~2.5.1"
+    "basisjs": "1.9.2",
+    "moment": "~2.5.1"
   }
 }

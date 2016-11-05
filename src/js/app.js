@@ -1,16 +1,15 @@
-basis.require('basis.app');
-basis.require('basis.ui');
-basis.require('basis.data');
-/** @cut */ basis.require('basis.devpanel');
+var Value = require('basis.data').Value;
+var Node = require('basis.ui').Node;
+/** @cut */ require('basis.devpanel');
 
-module.exports = basis.app.create({
+module.exports = require('basis.app').create({
   replace: 'app-placeholder',
 
   init: function(){
     /** @cut */ var t = new Date;
 
-    var dataState = basis.data.Value.from(require('app.modules').all, 'stateChanged', 'state');
-    var appNode = new basis.ui.Node({
+    var dataState = Value.from(require('app.modules').all, 'stateChanged', 'state');
+    var appNode = new Node({
       template: resource('./template/layout.tmpl'),
       binding: {
         loading: dataState.as(function(state){
@@ -38,7 +37,7 @@ module.exports = basis.app.create({
     });
 
     /** @cut */ console.log('create views', new Date - t);
-    
+
     return appNode;
   }
 });
